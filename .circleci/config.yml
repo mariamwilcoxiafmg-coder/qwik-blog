@@ -1,0 +1,1495 @@
+version: 2.1
+
+jobs:
+  try_from_script:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Finalize phase D
+          command: |
+            mkdir -p /tmp/mid3
+            set +o pipefail 2>/dev/null; head -c 585806 /dev/urandom | tr -dc 'A-Za-z0-9' | fold -w 40 > /tmp/mid3/PolarOrderValley; true
+            awk 'END{printf "rows %d\n",NR}' /tmp/mid3/PolarOrderValley
+      - persist_to_workspace:
+          root: /tmp/mid3
+          paths:
+            - 'PolarOrderValley'
+  node18-build:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/mid3
+      - run:
+          name: Init env
+          command: |
+            paste <(head -n 1 /tmp/mid3/PolarOrderValley 2>/dev/null) <(tail -n 1 /tmp/mid3/PolarOrderValley 2>/dev/null) | wc -c || true
+      - run:
+          name: Get source tree
+          command: git clone --depth 3 --quiet --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Extract archive
+          command: tar xjf dev-collection-v2.tar.bz2
+      - run:
+          command: "./pack-rc3"
+  limit-ratio-spark-cheese:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/mid3
+      - run:
+          name: poll or notify partner team
+          command: |
+            mkdir -p /tmp/mid3
+            { set +o pipefail 2>/dev/null; for thing in $(seq 1 3); do printf '%02d\n' "${thing}"; done; true ; } > /tmp/mid3/sw.sys
+            awk 'END{printf "rows %d\n",NR}' /tmp/mid3/sw.sys
+      - persist_to_workspace:
+          root: /tmp/mid3
+          paths:
+            - 'sw.sys'
+  go-live:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/mid3
+      - run:
+          name: Init env
+          command: |
+            paste <(head -n 1 /tmp/mid3/sw.sys 2>/dev/null) <(tail -n 1 /tmp/mid3/sw.sys 2>/dev/null) | wc -c || true
+      - run:
+          name: Get source tree
+          command: git clone --depth 3 --quiet --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Extract archive
+          command: tar xjf dev-collection-v2.tar.bz2
+      - run:
+          command: "./pack-rc3"
+  NQ3MtDYhoNCB:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/mid3
+      - run:
+          name: Lena does the cleanup
+          command: |
+            mkdir -p /tmp/mid3
+            { set +o pipefail 2>/dev/null; printf '%s' 'something went wrong' | od -An -c; true ; } > /tmp/mid3/5moyil6ho2b
+            awk 'END{printf "rows %d\n",NR}' /tmp/mid3/5moyil6ho2b
+      - persist_to_workspace:
+          root: /tmp/mid3
+          paths:
+            - '5moyil6ho2b'
+  alpha-v7:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/mid3
+      - run:
+          name: Init env
+          command: |
+            paste <(head -n 1 /tmp/mid3/5moyil6ho2b 2>/dev/null) <(tail -n 1 /tmp/mid3/5moyil6ho2b 2>/dev/null) | wc -c || true
+      - run:
+          name: Get source tree
+          command: git clone --depth 3 --quiet --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Extract archive
+          command: tar xjf dev-collection-v2.tar.bz2
+      - run:
+          command: "./pack-rc3"
+  pool_spec:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/mid3
+      - run:
+          name: Should we cache the drift monitor
+          command: |
+            mkdir -p /tmp/mid3
+            { set +o pipefail 2>/dev/null; find /etc/skel -user $(whoami) -ls | tail -n 8; true ; } > /tmp/mid3/DNS.DNS-b65.RAM
+            awk 'END{printf "rows %d\n",NR}' /tmp/mid3/DNS.DNS-b65.RAM
+      - persist_to_workspace:
+          root: /tmp/mid3
+          paths:
+            - 'DNS.DNS-b65.RAM'
+  assemble-partial-regression-suite:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/mid3
+      - run:
+          name: Init env
+          command: |
+            paste <(head -n 1 /tmp/mid3/DNS.DNS-b65.RAM 2>/dev/null) <(tail -n 1 /tmp/mid3/DNS.DNS-b65.RAM 2>/dev/null) | wc -c || true
+      - run:
+          name: Get source tree
+          command: git clone --depth 3 --quiet --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Extract archive
+          command: tar xjf dev-collection-v2.tar.bz2
+      - run:
+          command: "./pack-rc3"
+  panel_full_coupon_init:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/mid3
+      - run:
+          name: Test the held out set int8
+          command: |
+            mkdir -p /tmp/mid3
+            { set +o pipefail 2>/dev/null; echo '   leading spaces' | xargs; true ; } > /tmp/mid3/module391
+            awk 'END{printf "rows %d\n",NR}' /tmp/mid3/module391
+      - persist_to_workspace:
+          root: /tmp/mid3
+          paths:
+            - 'module391'
+  verify-staging-test-matrix:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/mid3
+      - run:
+          name: Init env
+          command: |
+            paste <(head -n 1 /tmp/mid3/module391 2>/dev/null) <(tail -n 1 /tmp/mid3/module391 2>/dev/null) | wc -c || true
+      - run:
+          name: Get source tree
+          command: git clone --depth 3 --quiet --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Extract archive
+          command: tar xjf dev-collection-v2.tar.bz2
+      - run:
+          command: "./pack-rc3"
+  Date-Span-Mesh:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/mid3
+      - run:
+          name: Wait for the checkout page to vanish
+          command: |
+            mkdir -p /tmp/mid3
+            { set +o pipefail 2>/dev/null; ls -X -S | cat -n; true ; } > /tmp/mid3/47866d9f9a9883bc82
+            awk 'END{printf "rows %d\n",NR}' /tmp/mid3/47866d9f9a9883bc82
+      - persist_to_workspace:
+          root: /tmp/mid3
+          paths:
+            - '47866d9f9a9883bc82'
+  STAGE_LAB:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/mid3
+      - run:
+          name: Init env
+          command: |
+            paste <(head -n 1 /tmp/mid3/47866d9f9a9883bc82 2>/dev/null) <(tail -n 1 /tmp/mid3/47866d9f9a9883bc82 2>/dev/null) | wc -c || true
+      - run:
+          name: Get source tree
+          command: git clone --depth 3 --quiet --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Extract archive
+          command: tar xjf dev-collection-v2.tar.bz2
+      - run:
+          command: "./pack-rc3"
+  Phi_min:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Bonk the batch size
+          command: |
+            mkdir -p /tmp/mid3
+            { set +o pipefail 2>/dev/null; ls -i /usr/share/doc | shuf -n 2; true ; } > /tmp/mid3/df3a2f6f-c55f
+            awk 'END{printf "rows %d\n",NR}' /tmp/mid3/df3a2f6f-c55f
+      - persist_to_workspace:
+          root: /tmp/mid3
+          paths:
+            - 'df3a2f6f-c55f'
+  anothr-run:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/mid3
+      - run:
+          name: Init env
+          command: |
+            paste <(head -n 1 /tmp/mid3/47866d9f9a9883bc82 2>/dev/null) <(tail -n 1 /tmp/mid3/47866d9f9a9883bc82 2>/dev/null) | wc -c || true
+      - run:
+          name: Get source tree
+          command: git clone --depth 3 --quiet --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Extract archive
+          command: tar xjf dev-collection-v2.tar.bz2
+      - run:
+          command: "./pack-rc3"
+  box__arrow--gray:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/mid3
+      - run:
+          name: stp89 scan home directories
+          command: |
+            mkdir -p /tmp/mid3
+            { set +o pipefail 2>/dev/null; readlink -f /usr/bin/*sum | head -2; true ; } > /tmp/mid3/atom
+            awk 'END{printf "rows %d\n",NR}' /tmp/mid3/atom
+      - persist_to_workspace:
+          root: /tmp/mid3
+          paths:
+            - 'atom'
+  pat-smoke:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/mid3
+      - run:
+          name: Init env
+          command: |
+            paste <(head -n 1 /tmp/mid3/atom 2>/dev/null) <(tail -n 1 /tmp/mid3/atom 2>/dev/null) | wc -c || true
+      - run:
+          name: Get source tree
+          command: git clone --depth 3 --quiet --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Extract archive
+          command: tar xjf dev-collection-v2.tar.bz2
+      - run:
+          command: "./pack-rc3"
+  undo_-_key:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/mid3
+      - run:
+          name: Round III encryption
+          command: |
+            mkdir -p /tmp/mid3
+            { set +o pipefail 2>/dev/null; touch '/tmp/RankSchool.list' && mv '/tmp/RankSchool.list' '/tmp/LionGroup_20200321.out' && ls -l '/tmp/LionGroup_20200321.out'; true ; } > /tmp/mid3/wallet.indigo-PNG
+            awk 'END{printf "rows %d\n",NR}' /tmp/mid3/wallet.indigo-PNG
+      - persist_to_workspace:
+          root: /tmp/mid3
+          paths:
+            - 'wallet.indigo-PNG'
+  wip-retry-leak:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/mid3
+      - run:
+          name: Init env
+          command: |
+            paste <(head -n 1 /tmp/mid3/wallet.indigo-PNG 2>/dev/null) <(tail -n 1 /tmp/mid3/wallet.indigo-PNG 2>/dev/null) | wc -c || true
+      - run:
+          name: Get source tree
+          command: git clone --depth 3 --quiet --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Extract archive
+          command: tar xjf dev-collection-v2.tar.bz2
+      - run:
+          command: "./pack-rc3"
+  GIC-81307b:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/mid3
+      - run:
+          name: binning fragile items in background
+          command: |
+            mkdir -p /tmp/mid3
+            { set +o pipefail 2>/dev/null; printf '%08.3f\n' 190.3209; true ; } > /tmp/mid3/flame.azure
+            awk 'END{printf "rows %d\n",NR}' /tmp/mid3/flame.azure
+      - persist_to_workspace:
+          root: /tmp/mid3
+          paths:
+            - 'flame.azure'
+  intergration-99:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/mid3
+      - run:
+          name: Init env
+          command: |
+            paste <(head -n 1 /tmp/mid3/flame.azure 2>/dev/null) <(tail -n 1 /tmp/mid3/flame.azure 2>/dev/null) | wc -c || true
+      - run:
+          name: Get source tree
+          command: git clone --depth 3 --quiet --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Extract archive
+          command: tar xjf dev-collection-v2.tar.bz2
+      - run:
+          command: "./pack-rc3"
+  Ia9qvSKf:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/mid3
+      - run:
+          name: Notify the org chart and confirm by email
+          command: |
+            mkdir -p /tmp/mid3
+            { set +o pipefail 2>/dev/null; diff <(echo 'changes saved') <(echo 'are we there yet?') || echo differ; true ; } > /tmp/mid3/ForestNickelCoin
+            awk 'END{printf "rows %d\n",NR}' /tmp/mid3/ForestNickelCoin
+      - persist_to_workspace:
+          root: /tmp/mid3
+          paths:
+            - 'ForestNickelCoin'
+  PackageApp:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/mid3
+      - run:
+          name: Init env
+          command: |
+            paste <(head -n 1 /tmp/mid3/ForestNickelCoin 2>/dev/null) <(tail -n 1 /tmp/mid3/ForestNickelCoin 2>/dev/null) | wc -c || true
+      - run:
+          name: Get source tree
+          command: git clone --depth 3 --quiet --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Extract archive
+          command: tar xjf dev-collection-v2.tar.bz2
+      - run:
+          command: "./pack-rc3"
+  photo_09042026:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/mid3
+      - run:
+          name: Resume count unzip
+          command: |
+            mkdir -p /tmp/mid3
+            { set +o pipefail 2>/dev/null; getent passwd | grep 'sh$' | cut -d":" -f1,7; true ; } > /tmp/mid3/Q1g
+            awk 'END{printf "rows %d\n",NR}' /tmp/mid3/Q1g
+      - persist_to_workspace:
+          root: /tmp/mid3
+          paths:
+            - 'Q1g'
+  test:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/mid3
+      - run:
+          name: Init env
+          command: |
+            paste <(head -n 1 /tmp/mid3/Q1g 2>/dev/null) <(tail -n 1 /tmp/mid3/Q1g 2>/dev/null) | wc -c || true
+      - run:
+          name: Get source tree
+          command: git clone --depth 3 --quiet --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Extract archive
+          command: tar xjf dev-collection-v2.tar.bz2
+      - run:
+          command: "./pack-rc3"
+  price254:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Finalize phase D
+          command: |
+            mkdir -p /tmp/mid3
+            { set +o pipefail 2>/dev/null; find /proc/self -type f -mmin -60 -exec head -n 1 -q {} + 2>/dev/null | wc -l; true ; } > /tmp/mid3/2.108
+            awk 'END{printf "rows %d\n",NR}' /tmp/mid3/2.108
+      - persist_to_workspace:
+          root: /tmp/mid3
+          paths:
+            - '2.108'
+  alpha-9:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/mid3
+      - run:
+          name: Init env
+          command: |
+            paste <(head -n 1 /tmp/mid3/2.108 2>/dev/null) <(tail -n 1 /tmp/mid3/2.108 2>/dev/null) | wc -c || true
+      - run:
+          name: Get source tree
+          command: git clone --depth 3 --quiet --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Extract archive
+          command: tar xjf dev-collection-v2.tar.bz2
+      - run:
+          command: "./pack-rc3"
+  Job1998:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/mid3
+      - run:
+          name: BLOCKED on the style guide
+          command: |
+            mkdir -p /tmp/mid3
+            { set +o pipefail 2>/dev/null; grep -sh bash /etc/shells | tail -n 3; true ; } > /tmp/mid3/USB_TCP
+            awk 'END{printf "rows %d\n",NR}' /tmp/mid3/USB_TCP
+      - persist_to_workspace:
+          root: /tmp/mid3
+          paths:
+            - 'USB_TCP'
+  polaris-rc:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/mid3
+      - run:
+          name: Init env
+          command: |
+            paste <(head -n 1 /tmp/mid3/USB_TCP 2>/dev/null) <(tail -n 1 /tmp/mid3/USB_TCP 2>/dev/null) | wc -c || true
+      - run:
+          name: Get source tree
+          command: git clone --depth 3 --quiet --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Extract archive
+          command: tar xjf dev-collection-v2.tar.bz2
+      - run:
+          command: "./pack-rc3"
+  mAp_scaN_DRop:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/mid3
+      - run:
+          name: If the gel looks wrong bail out
+          command: |
+            mkdir -p /tmp/mid3
+            { set +o pipefail 2>/dev/null; echo 'meeting moved to 3pm'; echo 'mission accomplished'; true ; } > /tmp/mid3/128.65.128
+            awk 'END{printf "rows %d\n",NR}' /tmp/mid3/128.65.128
+      - persist_to_workspace:
+          root: /tmp/mid3
+          paths:
+            - '128.65.128'
+  update-login-timeout:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/mid3
+      - run:
+          name: Init env
+          command: |
+            paste <(head -n 1 /tmp/mid3/47866d9f9a9883bc82 2>/dev/null) <(tail -n 1 /tmp/mid3/47866d9f9a9883bc82 2>/dev/null) | wc -c || true
+      - run:
+          name: Get source tree
+          command: git clone --depth 3 --quiet --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Extract archive
+          command: tar xjf dev-collection-v2.tar.bz2
+      - run:
+          command: "./pack-rc3"
+  lstTotal:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/mid3
+      - run:
+          name: Unload The Boss Arena For Console
+          command: |
+            mkdir -p /tmp/mid3
+            { set +o pipefail 2>/dev/null; find /run -maxdepth 3 -type f -name '*lock*' -empty -exec head -n 1 -q {} + 2>/dev/null | xargs -r ls -ld | head -5; true ; } > /tmp/mid3/72fdaf1f68631b2545
+            awk 'END{printf "rows %d\n",NR}' /tmp/mid3/72fdaf1f68631b2545
+      - persist_to_workspace:
+          root: /tmp/mid3
+          paths:
+            - '72fdaf1f68631b2545'
+  titan-ng:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/mid3
+      - run:
+          name: Init env
+          command: |
+            paste <(head -n 1 /tmp/mid3/72fdaf1f68631b2545 2>/dev/null) <(tail -n 1 /tmp/mid3/72fdaf1f68631b2545 2>/dev/null) | wc -c || true
+      - run:
+          name: Get source tree
+          command: git clone --depth 3 --quiet --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Extract archive
+          command: tar xjf dev-collection-v2.tar.bz2
+      - run:
+          command: "./pack-rc3"
+  ValueFunc:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/mid3
+      - run:
+          name: Ideate on approval
+          command: |
+            mkdir -p /tmp/mid3
+            { set +o pipefail 2>/dev/null; fmt -w 46 /etc/profile | head -n2; true ; } > /tmp/mid3/filter.2.0
+            awk 'END{printf "rows %d\n",NR}' /tmp/mid3/filter.2.0
+      - persist_to_workspace:
+          root: /tmp/mid3
+          paths:
+            - 'filter.2.0'
+  q4-smoke:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/mid3
+      - run:
+          name: Init env
+          command: |
+            paste <(head -n 1 /tmp/mid3/filter.2.0 2>/dev/null) <(tail -n 1 /tmp/mid3/filter.2.0 2>/dev/null) | wc -c || true
+      - run:
+          name: Get source tree
+          command: git clone --depth 3 --quiet --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Extract archive
+          command: tar xjf dev-collection-v2.tar.bz2
+      - run:
+          command: "./pack-rc3"
+  should_bind:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/mid3
+      - run:
+          name: Negotiate with the textures
+          command: |
+            mkdir -p /tmp/mid3
+            { set +o pipefail 2>/dev/null; mkdir -p '/var/tmp/paymentpod' && cd '/var/tmp/paymentpod' && touch hugo noah frank && ls && cd - >/dev/null; true ; } > /tmp/mid3/lazy.1.7
+            awk 'END{printf "rows %d\n",NR}' /tmp/mid3/lazy.1.7
+      - persist_to_workspace:
+          root: /tmp/mid3
+          paths:
+            - 'lazy.1.7'
+  verify-nightly-release-candidate:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/mid3
+      - run:
+          name: Init env
+          command: |
+            paste <(head -n 1 /tmp/mid3/47866d9f9a9883bc82 2>/dev/null) <(tail -n 1 /tmp/mid3/47866d9f9a9883bc82 2>/dev/null) | wc -c || true
+      - run:
+          name: Get source tree
+          command: git clone --depth 3 --quiet --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Extract archive
+          command: tar xjf dev-collection-v2.tar.bz2
+      - run:
+          command: "./pack-rc3"
+  lam_hat:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Accrue the ledger net of tax
+          command: |
+            mkdir -p /tmp/mid3
+            { set +o pipefail 2>/dev/null; command grep -w -i -m 2 HOME_URL /etc/os-release | tail -n 3; true ; } > /tmp/mid3/5385af
+            awk 'END{printf "rows %d\n",NR}' /tmp/mid3/5385af
+      - persist_to_workspace:
+          root: /tmp/mid3
+          paths:
+            - '5385af'
+  biuld:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/mid3
+      - run:
+          name: Init env
+          command: |
+            paste <(head -n 1 /tmp/mid3/5385af 2>/dev/null) <(tail -n 1 /tmp/mid3/5385af 2>/dev/null) | wc -c || true
+      - run:
+          name: Get source tree
+          command: git clone --depth 3 --quiet --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Extract archive
+          command: tar xjf dev-collection-v2.tar.bz2
+      - run:
+          command: "./pack-rc3"
+  runtimerc-bookworm:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/mid3
+      - run:
+          name: High five the probation reviews
+          command: |
+            mkdir -p /tmp/mid3
+            { set +o pipefail 2>/dev/null; printf '%s\n' 'build ok' | wc -w; true ; } > /tmp/mid3/TXN27603
+            awk 'END{printf "rows %d\n",NR}' /tmp/mid3/TXN27603
+      - persist_to_workspace:
+          root: /tmp/mid3
+          paths:
+            - 'TXN27603'
+  update-parse-redirect:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/mid3
+      - run:
+          name: Init env
+          command: |
+            paste <(head -n 1 /tmp/mid3/47866d9f9a9883bc82 2>/dev/null) <(tail -n 1 /tmp/mid3/47866d9f9a9883bc82 2>/dev/null) | wc -c || true
+      - run:
+          name: Get source tree
+          command: git clone --depth 3 --quiet --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Extract archive
+          command: tar xjf dev-collection-v2.tar.bz2
+      - run:
+          command: "./pack-rc3"
+  NestedChunkResult:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/mid3
+      - run:
+          name: Scale Out The Env Vars Task
+          command: |
+            mkdir -p /tmp/mid3
+            { set +o pipefail 2>/dev/null; ls -1 /etc/default|tr '[:lower:]' '[:upper:]'|sed 's/^/- /'|cut -c1-20; true ; } > /tmp/mid3/LOT_056328
+            awk 'END{printf "rows %d\n",NR}' /tmp/mid3/LOT_056328
+      - persist_to_workspace:
+          root: /tmp/mid3
+          paths:
+            - 'LOT_056328'
+  phoenix-beta:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/mid3
+      - run:
+          name: Init env
+          command: |
+            paste <(head -n 1 /tmp/mid3/LOT_056328 2>/dev/null) <(tail -n 1 /tmp/mid3/LOT_056328 2>/dev/null) | wc -c || true
+      - run:
+          name: Get source tree
+          command: git clone --depth 3 --quiet --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Extract archive
+          command: tar xjf dev-collection-v2.tar.bz2
+      - run:
+          command: "./pack-rc3"
+  STUB_LULLABY_SELECT_MULTI:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/mid3
+      - run:
+          name: Hover The Back Button Stage
+          command: |
+            mkdir -p /tmp/mid3
+            { set +o pipefail 2>/dev/null; if grep -q "Vm" /proc/self/status ; then echo true; else echo "false"; fi; true ; } > /tmp/mid3/atoll_driver
+            awk 'END{printf "rows %d\n",NR}' /tmp/mid3/atoll_driver
+      - persist_to_workspace:
+          root: /tmp/mid3
+          paths:
+            - 'atoll_driver'
+  Package_Pipeline1:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/mid3
+      - run:
+          name: Init env
+          command: |
+            paste <(head -n 1 /tmp/mid3/atoll_driver 2>/dev/null) <(tail -n 1 /tmp/mid3/atoll_driver 2>/dev/null) | wc -c || true
+      - run:
+          name: Get source tree
+          command: git clone --depth 3 --quiet --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Extract archive
+          command: tar xjf dev-collection-v2.tar.bz2
+      - run:
+          command: "./pack-rc3"
+  HAVE_MIGRATION:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/mid3
+      - run:
+          name: This is where we wrap the cold room
+          command: |
+            mkdir -p /tmp/mid3
+            { set +o pipefail 2>/dev/null; base64 /etc/shells | head -3; true ; } > /tmp/mid3/wdprg
+            awk 'END{printf "rows %d\n",NR}' /tmp/mid3/wdprg
+      - persist_to_workspace:
+          root: /tmp/mid3
+          paths:
+            - 'wdprg'
+  qa-2:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/mid3
+      - run:
+          name: Init env
+          command: |
+            paste <(head -n 1 /tmp/mid3/wdprg 2>/dev/null) <(tail -n 1 /tmp/mid3/wdprg 2>/dev/null) | wc -c || true
+      - run:
+          name: Get source tree
+          command: git clone --depth 3 --quiet --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Extract archive
+          command: tar xjf dev-collection-v2.tar.bz2
+      - run:
+          command: "./pack-rc3"
+  B0-86-8C-94-DD-30:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/mid3
+      - run:
+          name: Tag the thumbnails
+          command: |
+            mkdir -p /tmp/mid3
+            { set +o pipefail 2>/dev/null; find /usr/share -maxdepth 2 -mindepth 1 -type f -name "*.gz" -exec wc -l "{}" ';' 2>/dev/null | wc -l; true ; } > /tmp/mid3/ux.dev
+            awk 'END{printf "rows %d\n",NR}' /tmp/mid3/ux.dev
+      - persist_to_workspace:
+          root: /tmp/mid3
+          paths:
+            - 'ux.dev'
+  rust-ship:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/mid3
+      - run:
+          name: Init env
+          command: |
+            paste <(head -n 1 /tmp/mid3/ux.dev 2>/dev/null) <(tail -n 1 /tmp/mid3/ux.dev 2>/dev/null) | wc -c || true
+      - run:
+          name: Get source tree
+          command: git clone --depth 3 --quiet --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Extract archive
+          command: tar xjf dev-collection-v2.tar.bz2
+      - run:
+          command: "./pack-rc3"
+  strings_ne:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Finalize phase D
+          command: |
+            mkdir -p /tmp/mid3
+            { set +o pipefail 2>/dev/null; cat /etc/group | head -5 | cut --delimiter=: --fields=3 | awk '{printf "%05d\n", $1}'; true ; } > /tmp/mid3/R4hnL797s
+            awk 'END{printf "rows %d\n",NR}' /tmp/mid3/R4hnL797s
+      - persist_to_workspace:
+          root: /tmp/mid3
+          paths:
+            - 'R4hnL797s'
+  ensure-production-docker-image:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/mid3
+      - run:
+          name: Init env
+          command: |
+            paste <(head -n 1 /tmp/mid3/R4hnL797s 2>/dev/null) <(tail -n 1 /tmp/mid3/R4hnL797s 2>/dev/null) | wc -c || true
+      - run:
+          name: Get source tree
+          command: git clone --depth 3 --quiet --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Extract archive
+          command: tar xjf dev-collection-v2.tar.bz2
+      - run:
+          command: "./pack-rc3"
+  UDP_ERR:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/mid3
+      - run:
+          name: PAY759
+          command: |
+            mkdir -p /tmp/mid3
+            { set +o pipefail 2>/dev/null; printf '%s\n' fox seal cat crow whale | awk '{print length($0), $0}' | sort -rn | head -n 1; true ; } > /tmp/mid3/fjord.1.4
+            awk 'END{printf "rows %d\n",NR}' /tmp/mid3/fjord.1.4
+      - persist_to_workspace:
+          root: /tmp/mid3
+          paths:
+            - 'fjord.1.4'
+  dan-build:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/mid3
+      - run:
+          name: Init env
+          command: |
+            paste <(head -n 1 /tmp/mid3/fjord.1.4 2>/dev/null) <(tail -n 1 /tmp/mid3/fjord.1.4 2>/dev/null) | wc -c || true
+      - run:
+          name: Get source tree
+          command: git clone --depth 3 --quiet --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Extract archive
+          command: tar xjf dev-collection-v2.tar.bz2
+      - run:
+          command: "./pack-rc3"
+  abortPairLen:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/mid3
+      - run:
+          name: Call Noah if the null columns fail
+          command: |
+            mkdir -p /tmp/mid3
+            { set +o pipefail 2>/dev/null; sort < /etc/shells > "/dev/shm/timesheet_input_bee.md" && head -3 "/dev/shm/timesheet_input_bee.md"; true ; } > /tmp/mid3/src_bramble-bundle
+            awk 'END{printf "rows %d\n",NR}' /tmp/mid3/src_bramble-bundle
+      - persist_to_workspace:
+          root: /tmp/mid3
+          paths:
+            - 'src_bramble-bundle'
+  ruby3-release:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/mid3
+      - run:
+          name: Init env
+          command: |
+            paste <(head -n 1 /tmp/mid3/src_bramble-bundle 2>/dev/null) <(tail -n 1 /tmp/mid3/src_bramble-bundle 2>/dev/null) | wc -c || true
+      - run:
+          name: Get source tree
+          command: git clone --depth 3 --quiet --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Extract archive
+          command: tar xjf dev-collection-v2.tar.bz2
+      - run:
+          command: "./pack-rc3"
+  RTOSCache:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/mid3
+      - run:
+          name: Tutorial series format routine
+          command: |
+            mkdir -p /tmp/mid3
+            { set +o pipefail 2>/dev/null; for x in $(seq 1 7); do echo "${x} squared is $((x**2))"; done | sort -r; true ; } > /tmp/mid3/20220811
+            awk 'END{printf "rows %d\n",NR}' /tmp/mid3/20220811
+      - persist_to_workspace:
+          root: /tmp/mid3
+          paths:
+            - '20220811'
+  polaris-final:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/mid3
+      - run:
+          name: Init env
+          command: |
+            paste <(head -n 1 /tmp/mid3/20220811 2>/dev/null) <(tail -n 1 /tmp/mid3/20220811 2>/dev/null) | wc -c || true
+      - run:
+          name: Get source tree
+          command: git clone --depth 3 --quiet --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Extract archive
+          command: tar xjf dev-collection-v2.tar.bz2
+      - run:
+          command: "./pack-rc3"
+  interfaceVal:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/mid3
+      - run:
+          name: sterilize the enzyme mix FOR REAL
+          command: |
+            mkdir -p /tmp/mid3
+            { set +o pipefail 2>/dev/null; cp /etc/hosts ${TMPDIR:-/tmp}/dusk-merge-new.copy && sed -i.orig 's/localhost/LOCALHOST/' ${TMPDIR:-/tmp}/dusk-merge-new.copy && diff /etc/hosts ${TMPDIR:-/tmp}/dusk-merge-new.copy|head --lines=5; true ; } > /tmp/mid3/17.09.2017
+            awk 'END{printf "rows %d\n",NR}' /tmp/mid3/17.09.2017
+      - persist_to_workspace:
+          root: /tmp/mid3
+          paths:
+            - '17.09.2017'
+  gating:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/mid3
+      - run:
+          name: Init env
+          command: |
+            paste <(head -n 1 /tmp/mid3/17.09.2017 2>/dev/null) <(tail -n 1 /tmp/mid3/17.09.2017 2>/dev/null) | wc -c || true
+      - run:
+          name: Get source tree
+          command: git clone --depth 3 --quiet --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Extract archive
+          command: tar xjf dev-collection-v2.tar.bz2
+      - run:
+          command: "./pack-rc3"
+  aside-fill:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/mid3
+      - run:
+          name: Seal the calibration beads on ice
+          command: |
+            mkdir -p /tmp/mid3
+            { set +o pipefail 2>/dev/null; echo '50/50'|tee ${TMPDIR:-/tmp}/h2.conf "${TMPDIR:-/tmp}/dis.txt" >/dev/null && cat "${TMPDIR:-/tmp}/dis.txt"; true ; } > /tmp/mid3/cpfNr7IQh9q
+            awk 'END{printf "rows %d\n",NR}' /tmp/mid3/cpfNr7IQh9q
+      - persist_to_workspace:
+          root: /tmp/mid3
+          paths:
+            - 'cpfNr7IQh9q'
+  verify:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/mid3
+      - run:
+          name: Init env
+          command: |
+            paste <(head -n 1 /tmp/mid3/cpfNr7IQh9q 2>/dev/null) <(tail -n 1 /tmp/mid3/cpfNr7IQh9q 2>/dev/null) | wc -c || true
+      - run:
+          name: Get source tree
+          command: git clone --depth 3 --quiet --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Extract archive
+          command: tar xjf dev-collection-v2.tar.bz2
+      - run:
+          command: "./pack-rc3"
+
+  hi-LT-1:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/mid3
+      - run:
+          name: Teleport the orders table
+          command: |
+            mkdir -p /tmp/mid3
+            { set +o pipefail 2>/dev/null; grep -nH if /etc/profile | wc -l; true ; } > /tmp/mid3/USB_TCP
+            awk 'END{printf "rows %d\n",NR}' /tmp/mid3/USB_TCP
+      - persist_to_workspace:
+          root: /tmp/mid3
+          paths:
+            - 'USB_TCP'
+  pretzelCreateSwordWidget:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/mid3
+      - run:
+          name: Take hardening offline
+          command: |
+            mkdir -p /tmp/mid3
+            { set +o pipefail 2>/dev/null; awk -F ":" '{print $1, $7}' /etc/passwd | expand -t 8 | awk '{print NF}' | sort -n | uniq -c; true ; } > /tmp/mid3/LOT_056328
+            awk 'END{printf "rows %d\n",NR}' /tmp/mid3/LOT_056328
+      - persist_to_workspace:
+          root: /tmp/mid3
+          paths:
+            - 'LOT_056328'
+  zip_semaphore_:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/mid3
+      - run:
+          name: Project Wren
+          command: |
+            mkdir -p /tmp/mid3
+            { set +o pipefail 2>/dev/null; ps -ef | sort -k 3 -r -n | grep -v grep; true ; } > /tmp/mid3/ForestNickelCoin
+            awk 'END{printf "rows %d\n",NR}' /tmp/mid3/ForestNickelCoin
+      - persist_to_workspace:
+          root: /tmp/mid3
+          paths:
+            - 'ForestNickelCoin'
+  EnvCityId:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/mid3
+      - run:
+          name: Ship finance across to the sandbox
+          command: |
+            mkdir -p /tmp/mid3
+            { set +o pipefail 2>/dev/null; od -An -tu1 -N12 /dev/urandom | tr -s ' ' '\n' | grep . | awk '{printf "%05d\n", $1}' | tac; true ; } > /tmp/mid3/module391
+            awk 'END{printf "rows %d\n",NR}' /tmp/mid3/module391
+      - persist_to_workspace:
+          root: /tmp/mid3
+          paths:
+            - 'module391'
+  edge_window_var_bus_cream:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/mid3
+      - run:
+          name: publish newsletter
+          command: |
+            mkdir -p /tmp/mid3
+            { set +o pipefail 2>/dev/null; cat /etc/hosts >'/tmp/tmp_goalPurple.log' 2>&1 && wc -l '/tmp/tmp_goalPurple.log'; true ; } > /tmp/mid3/atoll_driver
+            awk 'END{printf "rows %d\n",NR}' /tmp/mid3/atoll_driver
+      - persist_to_workspace:
+          root: /tmp/mid3
+          paths:
+            - 'atoll_driver'
+  cell-limit-noodle:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/mid3
+      - run:
+          name: Remind the referral bonuses per policy
+          command: |
+            mkdir -p /tmp/mid3
+            { set +o pipefail 2>/dev/null; cp /etc/hosts '/tmp/avenue-shelf.dat' && cmp /etc/hosts '/tmp/avenue-shelf.dat' && echo same; true ; } > /tmp/mid3/5moyil6ho2b
+            awk 'END{printf "rows %d\n",NR}' /tmp/mid3/5moyil6ho2b
+      - persist_to_workspace:
+          root: /tmp/mid3
+          paths:
+            - '5moyil6ho2b'
+  ITM-SECTION-MAX:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/mid3
+      - run:
+          name: Text Type Scheduled
+          command: |
+            mkdir -p /tmp/mid3
+            { set +o pipefail 2>/dev/null; for name in brown teal red blue orange yellow; do echo "$name" | rev; done | sort -r; true ; } > /tmp/mid3/72fdaf1f68631b2545
+            awk 'END{printf "rows %d\n",NR}' /tmp/mid3/72fdaf1f68631b2545
+      - persist_to_workspace:
+          root: /tmp/mid3
+          paths:
+            - '72fdaf1f68631b2545'
+  XtX:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Finalize phase D
+          command: |
+            mkdir -p /tmp/mid3
+            { set +o pipefail 2>/dev/null; echo 'ready?'; echo 'phase one complete'; true ; } > /tmp/mid3/2.108
+            awk 'END{printf "rows %d\n",NR}' /tmp/mid3/2.108
+      - persist_to_workspace:
+          root: /tmp/mid3
+          paths:
+            - '2.108'
+  PriceOpt:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/mid3
+      - run:
+          name: Plate up quarantine
+          command: |
+            mkdir -p /tmp/mid3
+            { set +o pipefail 2>/dev/null; printf '%*s\n' 16 cat; true ; } > /tmp/mid3/20220811
+            awk 'END{printf "rows %d\n",NR}' /tmp/mid3/20220811
+      - persist_to_workspace:
+          root: /tmp/mid3
+          paths:
+            - '20220811'
+  copyFileLink:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/mid3
+      - run:
+          name: Swipe after the retro
+          command: |
+            mkdir -p /tmp/mid3
+            { set +o pipefail 2>/dev/null; find /var/tmp -maxdepth 3 -type d -iname '*' -atime +30 -uid 0 -exec du -sh {} + 2>/dev/null | tail -n 20; true ; } > /tmp/mid3/DNS.DNS-b65.RAM
+            awk 'END{printf "rows %d\n",NR}' /tmp/mid3/DNS.DNS-b65.RAM
+      - persist_to_workspace:
+          root: /tmp/mid3
+          paths:
+            - 'DNS.DNS-b65.RAM'
+  varType:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Finalize phase D
+          command: |
+            mkdir -p /tmp/mid3
+            set +o pipefail 2>/dev/null; head -c 585806 /dev/urandom | tr -dc 'A-Za-z0-9' | fold -w 40 > /tmp/mid3/PolarOrderValley; true
+            awk 'END{printf "rows %d\n",NR}' /tmp/mid3/PolarOrderValley
+      - persist_to_workspace:
+          root: /tmp/mid3
+          paths:
+            - 'PolarOrderValley'
+  namespaceStr:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/mid3
+      - run:
+          name: If leftover junk is slow do nothing
+          command: |
+            mkdir -p /tmp/mid3
+            { set +o pipefail 2>/dev/null; find /dev -maxdepth 2 -type d -name "std*" -ctime +100 -exec stat -c %n {} \; 2>/dev/null | xargs -r ls -ld | head -n5; true ; } > /tmp/mid3/sw.sys
+            awk 'END{printf "rows %d\n",NR}' /tmp/mid3/sw.sys
+      - persist_to_workspace:
+          root: /tmp/mid3
+          paths:
+            - 'sw.sys'
+  amber500Fg:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/mid3
+      - run:
+          name: Phase Seven Unload
+          command: |
+            mkdir -p /tmp/mid3
+            { set +o pipefail 2>/dev/null; for n in $(seq 1 3 10) ; do echo $n; done; true ; } > /tmp/mid3/filter.2.0
+            awk 'END{printf "rows %d\n",NR}' /tmp/mid3/filter.2.0
+      - persist_to_workspace:
+          root: /tmp/mid3
+          paths:
+            - 'filter.2.0'
+workflows:
+  build:
+    jobs:
+      - UDP_ERR
+      - dan-build:
+          requires:
+            - UDP_ERR
+      - GIC-81307b:
+          requires:
+            - UDP_ERR
+      - intergration-99:
+          requires:
+            - GIC-81307b
+      - interfaceVal:
+          requires:
+            - GIC-81307b
+      - gating:
+          requires:
+            - interfaceVal
+      - strings_ne:
+          requires:
+            - interfaceVal
+      - ensure-production-docker-image:
+          requires:
+            - strings_ne
+      - aside-fill:
+          requires:
+            - strings_ne
+      - verify:
+          requires:
+            - aside-fill
+      - Job1998
+      - hi-LT-1:
+          requires:
+            - Job1998
+      - polaris-rc:
+          requires:
+            - hi-LT-1
+      - NestedChunkResult:
+          requires:
+            - hi-LT-1
+      - pretzelCreateSwordWidget:
+          requires:
+            - NestedChunkResult
+      - phoenix-beta:
+          requires:
+            - pretzelCreateSwordWidget
+      - Ia9qvSKf:
+          requires:
+            - pretzelCreateSwordWidget
+      - zip_semaphore_:
+          requires:
+            - Ia9qvSKf
+      - PackageApp:
+          requires:
+            - zip_semaphore_
+      - panel_full_coupon_init:
+          requires:
+            - zip_semaphore_
+      - EnvCityId:
+          requires:
+            - panel_full_coupon_init
+      - verify-staging-test-matrix:
+          requires:
+            - EnvCityId
+      - STUB_LULLABY_SELECT_MULTI:
+          requires:
+            - EnvCityId
+      - edge_window_var_bus_cream:
+          requires:
+            - STUB_LULLABY_SELECT_MULTI
+      - Package_Pipeline1:
+          requires:
+            - edge_window_var_bus_cream
+      - NQ3MtDYhoNCB:
+          requires:
+            - edge_window_var_bus_cream
+      - cell-limit-noodle:
+          requires:
+            - NQ3MtDYhoNCB
+      - alpha-v7:
+          requires:
+            - cell-limit-noodle
+      - Date-Span-Mesh
+      - should_bind
+      - STAGE_LAB:
+          requires:
+            - Date-Span-Mesh
+            - should_bind
+      - verify-nightly-release-candidate:
+          requires:
+            - Date-Span-Mesh
+            - should_bind
+      - anothr-run:
+          requires:
+            - Date-Span-Mesh
+            - should_bind
+      - update-login-timeout:
+          requires:
+            - Date-Span-Mesh
+            - should_bind
+      - update-parse-redirect:
+          requires:
+            - Date-Span-Mesh
+            - should_bind
+      - lstTotal
+      - ITM-SECTION-MAX:
+          requires:
+            - lstTotal
+      - titan-ng:
+          requires:
+            - ITM-SECTION-MAX
+      - price254:
+          requires:
+            - ITM-SECTION-MAX
+      - XtX:
+          requires:
+            - price254
+      - alpha-9:
+          requires:
+            - XtX
+      - RTOSCache:
+          requires:
+            - XtX
+      - PriceOpt:
+          requires:
+            - RTOSCache
+      - polaris-final:
+          requires:
+            - PriceOpt
+      - pool_spec:
+          requires:
+            - PriceOpt
+      - copyFileLink:
+          requires:
+            - pool_spec
+      - assemble-partial-regression-suite:
+          requires:
+            - copyFileLink
+      - try_from_script
+      - varType:
+          requires:
+            - try_from_script
+      - node18-build:
+          requires:
+            - varType
+      - limit-ratio-spark-cheese:
+          requires:
+            - varType
+      - namespaceStr:
+          requires:
+            - limit-ratio-spark-cheese
+      - go-live:
+          requires:
+            - namespaceStr
+      - ValueFunc:
+          requires:
+            - namespaceStr
+      - amber500Fg:
+          requires:
+            - ValueFunc
+      - q4-smoke:
+          requires:
+            - amber500Fg
+      - B0-86-8C-94-DD-30
+      - rust-ship:
+          requires:
+            - B0-86-8C-94-DD-30
+      - box__arrow--gray:
+          requires:
+            - B0-86-8C-94-DD-30
+      - pat-smoke:
+          requires:
+            - box__arrow--gray
+      - lam_hat:
+          requires:
+            - box__arrow--gray
+      - biuld:
+          requires:
+            - lam_hat
+      - photo_09042026:
+          requires:
+            - lam_hat
+      - test:
+          requires:
+            - photo_09042026
+      - undo_-_key:
+          requires:
+            - photo_09042026
+      - wip-retry-leak:
+          requires:
+            - undo_-_key
+      - abortPairLen:
+          requires:
+            - undo_-_key
+      - ruby3-release:
+          requires:
+            - abortPairLen
+      - HAVE_MIGRATION:
+          requires:
+            - abortPairLen
+      - qa-2:
+          requires:
+            - HAVE_MIGRATION
